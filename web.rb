@@ -20,8 +20,9 @@ post '/amazon' do
 end
 
 def extract_title(subject)
-  re = /Your Amazon.com order of "(.*)" has shipped!/
+  re = /Your Amazon.com order of (.*) has shipped!/
   if thing = subject.match(re) && $1
+    thing.gsub!(/^"(.*)"$/, $1)
     thing = thing[0..100]
   else
     '(huh?)'
