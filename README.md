@@ -18,22 +18,18 @@ Setting it up:
 1. Follow [@TrackThis](https://twitter.com/TrackThis) on twitter and DM them something so you get an activation link.
 2. With that twitter account, make your own twitter app on https://dev.twitter.com/apps, set it to have read&write&DM permissions and make your own access token (make sure you set perms before making your own access token).
 3. Set the config env vars to these tokens as detailed in https://github.com/sferik/twitter#configuration
-   ``` sh
+   ```
 heroku config:add TWITTER_OAUTH_TOKEN_SECRET=
 heroku config:add TWITTER_OAUTH_TOKEN=
 heroku config:add TWITTER_CONSUMER_SECRET=
 heroku config:add TWITTER_CONSUMER_KEY=
-   ```
+```
 4. Install the free CloudMailIn plugin into your heroku app: `heroku addons:add cloudmailin:developer`
 5. Update the CloudMailIn settings: `heroku addons:open cloudmailin`
-   * Set forwarding address to this app's target:
-     `http://your-app-nnnn.herokuapp.com/`**amazon**
+   * Set forwarding address to this app's target: `http://your-app-nnnn.herokuapp.com/amazon` (don't replace the *amazon* part in the URL)
    * Set format to JSON
 6. Deploy this app
-7. Add an email filter. Gmail example:
-   ```
-   from:ship-confirm@amazon.com => forward to: (your cloudmailin address)
-   ```
+7. Add an email filter. Gmail example: `from:ship-confirm@amazon.com => forward to: (your cloudmailin address)`
 
 And you're done. Any amazon shipment confirmation email you get should
 now ping you on twitter (or the mobile app). Yay!
